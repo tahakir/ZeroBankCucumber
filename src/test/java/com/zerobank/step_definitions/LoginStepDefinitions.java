@@ -22,8 +22,13 @@ LoginPage loginPage=new LoginPage();
     public void user_signs_in_with_credentials() {
         System.out.println("The user signs in");
         BrowserUtilities.wait(2);
-        loginPage.setLoginBox();
-        loginPage.setPasswordBox();
+        loginPage.login("username","password");
+
+    }
+
+    @When("If User logs in with wrong credentials, should receive a warning message saying {string}")
+    public void if_User_logs_in_with_wrong_credentials_should_receive_a_warning_message_saying(String message) {
+        loginPage.getWarningText();
     }
 
     @Then("User verifies the {string}")
@@ -37,6 +42,10 @@ LoginPage loginPage=new LoginPage();
     }
 
 
-
-
+    @Then("Verifies Get warning message")
+    public void verifiesGetWarningMessage() {
+        System.out.println("Warning message verification");
+        String expected="Login and/or password are wrong.";
+        Assert.assertEquals(loginPage.getWarningText(),expected);
+    }
 }

@@ -25,4 +25,6 @@ public class AccountActivityPage extends BasePage {
         return carPayment.getText().toString();
     }
 
+
+
 }

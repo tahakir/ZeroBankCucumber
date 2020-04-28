@@ -20,16 +20,22 @@ public class LoginPage extends BasePage{
 
     @FindBy(xpath = "//input[@id='user_login']")
     private WebElement loginBox;
-    public void setLoginBox(){
-        loginBox.sendKeys(ConfigurationReader.getProperty("username"));
-        BrowserUtilities.waitForPageToLoad(10);
-    }
 
     @FindBy(xpath = "//input[@id='user_password']")
     private WebElement passwordBox;
-    public void setPasswordBox(){
-        passwordBox.sendKeys(ConfigurationReader.getProperty("password"), Keys.ENTER);
+
+    public void login(String usernameValue,String passwordValue){
+        loginBox.sendKeys(usernameValue);
+        passwordBox.sendKeys(passwordValue,Keys.ENTER);
         BrowserUtilities.waitForPageToLoad(10);
+        BrowserUtilities.wait(3);
+
+    }
+    public void login(){
+        loginBox.sendKeys(ConfigurationReader.getProperty("username"));
+        passwordBox.sendKeys(ConfigurationReader.getProperty("password"),Keys.ENTER);
+        BrowserUtilities.waitForPageToLoad(10);
+        BrowserUtilities.wait(3);
     }
 
     @FindBy(xpath = "//li[@id='account_summary_tab']")
@@ -38,6 +44,12 @@ public class LoginPage extends BasePage{
         BrowserUtilities.waitForPageToLoad(10);
         return subHeaderAccountSummary.getText();
 
+    }
+
+    @FindBy(css = "div[class='alert alert-error']")
+    private WebElement warningText;
+    public String getWarningText(){
+        return warningText.getText().toString();
     }
 
 }
