@@ -1,7 +1,10 @@
 package com.zerobank.pages;
 
+import com.zerobank.utilities.BrowserUtilities;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 
 public class AccountSummaryPage extends BasePage {
@@ -33,4 +36,16 @@ public class AccountSummaryPage extends BasePage {
     public String getLoanAccounts(){
         return loanAccounts.getText().toString().trim();
     }
+
+    @FindBy(xpath = "//h2")
+    private List<WebElement> getAllsubheads;
+
+    public List<String> getGetAllsubheads(){
+
+        BrowserUtilities.waitForPageToLoad(20);
+        BrowserUtilities.wait(2);
+        return BrowserUtilities.getTextFromWebElements(getAllsubheads);
+    }
+
+
 }
