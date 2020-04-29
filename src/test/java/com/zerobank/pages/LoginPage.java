@@ -13,9 +13,12 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//button[@id='signin_button']")
     private WebElement signInBtn;
     public void landingPage(){
+        BrowserUtilities.wait(2);
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+        Driver.getDriver().manage().window().maximize();
         BrowserUtilities.waitForPageToLoad(10);
         BrowserUtilities.clickWithJS(signInBtn);
+
     }
 
     @FindBy(xpath = "//input[@id='user_login']")

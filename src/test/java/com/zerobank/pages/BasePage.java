@@ -14,7 +14,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class BasePage {
     protected WebDriver driver=Driver.getDriver();
     protected WebDriverWait wait=new WebDriverWait(driver,30);
-    protected Alert alert=driver.switchTo().alert();
 
     public BasePage(){
         PageFactory.initElements(driver,this);

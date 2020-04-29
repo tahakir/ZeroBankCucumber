@@ -34,6 +34,8 @@ public class Driver {
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--start-maximized");
+                    chromeOptions.setAcceptInsecureCerts(true);
+
                     driverPool.set(new ChromeDriver(chromeOptions));
                     break;
                 case "chromeheadless":

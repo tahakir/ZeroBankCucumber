@@ -2,7 +2,6 @@ package com.zerobank.step_definitions;
 
 import com.zerobank.pages.LoginPage;
 import com.zerobank.utilities.BrowserUtilities;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

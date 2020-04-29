@@ -1,6 +1,8 @@
 package com.zerobank.step_definitions;
 
 
+import com.zerobank.utilities.BrowserUtilities;
+import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -10,8 +12,11 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
     @Before
-    public void setup(){
-        System.out.println("Test Setup");
+    public void setup(Scenario scenario){
+        System.out.println("+++Starting test automation+++");
+        System.out.println("Browser type: "+ ConfigurationReader.getProperty("browser"));
+        System.out.println("Environment: "+ ConfigurationReader.getProperty("url"));
+        System.out.println("Test scenario: "+scenario.getName());
         Driver.getDriver().manage().window().maximize();
 
     }
