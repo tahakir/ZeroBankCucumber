@@ -23,6 +23,7 @@ public class AccountActivityPage extends BasePage {
 
     public String getCarPayment(){
         return carPayment.getText().toString();
+
     }
 
 
