@@ -1,12 +1,14 @@
 package com.zerobank.step_definitions;
 
 
+import com.zerobank.pages.LoginPage;
 import com.zerobank.utilities.BrowserUtilities;
 import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -18,6 +20,7 @@ public class Hooks {
         System.out.println("Environment: "+ ConfigurationReader.getProperty("url"));
         System.out.println("Test scenario: "+scenario.getName());
         Driver.getDriver().manage().window().maximize();
+
 
     }
 
