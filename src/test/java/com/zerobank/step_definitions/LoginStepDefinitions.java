@@ -2,12 +2,11 @@ package com.zerobank.step_definitions;
 
 import com.zerobank.pages.LoginPage;
 import com.zerobank.utilities.BrowserUtilities;
-import com.zerobank.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
+
 
 public class LoginStepDefinitions {
 LoginPage loginPage=new LoginPage();
@@ -42,12 +41,20 @@ LoginPage loginPage=new LoginPage();
     }
 
 
-    @Then("Verifies Get warning message")
-    public void verifiesGetWarningMessage() {
-        System.out.println("Warning message verification");
-        String expected="Login and/or password are wrong.";
-        Assert.assertEquals(loginPage.getWarningText(),expected);
+    @When("User signs in with invalid")
+    public void userSignsInWithInvalid() {
+        System.out.println("Invalid scenario");
+        loginPage.login("aaa","bbb");
+        loginPage.setJustClickBtn();
+        BrowserUtilities.wait(2);
+
+
     }
 
-
+    @Then("User verifies the warning text {string}")
+    public void userVerifiesTheWarningText(String message) {
+        System.out.println("Warning message verification");
+        Assert.assertEquals(loginPage.getWarningText(),message);
+        System.out.println(message);
+    }
 }

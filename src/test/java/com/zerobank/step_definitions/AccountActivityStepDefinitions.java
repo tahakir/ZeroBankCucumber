@@ -1,48 +1,50 @@
 package com.zerobank.step_definitions;
 
 import com.zerobank.pages.AccountActivityPage;
+import com.zerobank.pages.BasePage;
 import com.zerobank.pages.LoginPage;
 import com.zerobank.utilities.BrowserUtilities;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+import java.util.List;
 
 
 public class AccountActivityStepDefinitions {
     LoginPage loginPage=new LoginPage();
     AccountActivityPage accountActivityPage=new AccountActivityPage();
 
-    @When("User navigates to {string} tab")
-    public void user_navigates_to_tab(String string) {
-        BrowserUtilities.waitForPageToLoad(10);
-        loginPage.navigateTo(string);
 
+
+    @And("User navigates to {string} tab")
+    public void userNavigatesTo(String module) {
+        accountActivityPage.navigateTo(module);
     }
 
-    @When("User verifies {string}")
-    public void user_verifies(String string) {
-        String expected=string.toString();
-        String actual=accountActivityPage.getH2Text();
-        BrowserUtilities.waitForPageToLoad(10);
-        Assert.assertEquals(actual,expected);
 
-    }
-
-    @When("User clicks on checking account")
-    public void user_clicks_on_checking_account() {
-        System.out.println("User is selecting the account type:");
+    @Then("User verifies {string} as default select")
+    public void userVerifiesAsDefaultSelect(String defaultText) {
+        System.out.println("Verifying the "+defaultText);
+        Assert.assertEquals(accountActivityPage.defaultOption(),defaultText);
         BrowserUtilities.wait(2);
-        BrowserUtilities.waitForPageToLoad(10);
-        accountActivityPage.selectAccountType();
+    }
+
+
+    @And("Account dropdown should have these following options")
+    public void accountDropdownShouldHaveTheseFollowingOptions(List<String> dropdownOptions) {
+        System.out.println("Verifying: "+dropdownOptions);
+        BrowserUtilities.wait(2);
+        Assert.assertEquals(dropdownOptions,accountActivityPage.dropDownOptions());
 
     }
 
-    @Then("verifies the car payment amount {string}")
-    public void verifiesTheCarPaymentAmount(String payment) {
-        System.out.println("Car Payment verifications");
-        BrowserUtilities.wait(4);
-        Assert.assertEquals(payment,accountActivityPage.getCarPayment());
+    @Then("verifies table should have column names")
+    public void verifiesTableShouldHaveColumnNames(List<String> columnNames) {
+        System.out.println("Column names are: "+columnNames);
+        BrowserUtilities.wait(2);
+        Assert.assertEquals(columnNames,accountActivityPage.columnNames());
 
     }
 }

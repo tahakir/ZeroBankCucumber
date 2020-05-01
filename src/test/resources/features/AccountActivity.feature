@@ -1,10 +1,29 @@
+@account_activity
 Feature: Account Activity
-  @account_activity
-  Scenario: Show transactions
+
+  Background:
     Given User is on the landing page
     When User signs in with credentials
     And User navigates to "Account Activity" tab
-    And User verifies "Show Transactions"
-    And User clicks on checking account
-    Then verifies the car payment amount "1548"
+
+
+  @show_transactions
+  Scenario: Show transactions
+    Then User verifies "Savings" as default select
+    And Account dropdown should have these following options
+      | Savings     |
+      | Checking    |
+      | Savings     |
+      | Loan        |
+      | Credit Card |
+      | Brokerage   |
+
+  @column_names
+  Scenario: Transactions table
+    Then verifies table should have column names
+      | Date        |
+      | Description |
+      | Deposit     |
+      | Withdrawal  |
+
 

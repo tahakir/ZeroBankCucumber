@@ -21,6 +21,12 @@ public class LoginPage extends BasePage{
 
     }
 
+    @FindBy(css = "input[name='submit']")
+    private WebElement justClickBtn;
+    public void setJustClickBtn(){
+        justClickBtn.click();
+    }
+
     @FindBy(xpath = "//input[@id='user_login']")
     private WebElement loginBox;
 
