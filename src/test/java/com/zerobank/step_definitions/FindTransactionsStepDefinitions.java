@@ -4,6 +4,7 @@ package com.zerobank.step_definitions;
 
 import com.zerobank.pages.FindTransactionsPage;
 import com.zerobank.utilities.BrowserUtilities;
+import io.cucumber.java.en.But;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -106,5 +107,36 @@ public class FindTransactionsStepDefinitions {
     public void theUserEntersDescriptionThe(String arg0) {
         findTransactionsPage.cleanTable();
         findTransactionsPage.setDescription(arg0);
+    }
+
+
+    @Then("results table should show at least one result under the {string}")
+    public void resultsTableShouldShowAtLeastOneResultUnderThe(String arg0) {
+        System.out.println("The table is showing the result "+arg0);
+       findTransactionsPage.getDepositSide();
+    }
+
+    @Then("results table should show at least one result under {string}")
+    public void resultsTableShouldShowAtLeastOneResultUnder(String arg0) {
+        System.out.println("The table is showing the result "+arg0);
+        findTransactionsPage.getWithdrawalSide();
+    }
+
+    @When("user selects type {string}")
+    public void userSelectsType(String arg0) {
+        System.out.println("Selecting...."+arg0);
+        findTransactionsPage.setType(arg0);
+
+    }
+
+    @But("results table should show no result under {string}")
+    public void resultsTableShouldShowNoResultUnder(String arg0) {
+
+
+    }
+
+    @But("results table should show no result under the {string}")
+    public void resultsTableShouldShowNoResultUnderThe(String arg0) {
+
     }
 }

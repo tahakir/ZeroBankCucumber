@@ -26,6 +26,12 @@ public abstract class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(way))).click();
     }
 
+    public void navigateToSubModule(String subModule){
+        String way="//div[@id='tabs']//ul/li/a[contains(text(),'"+subModule+"')]";
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(way))).click();
+
+    }
+
 
 
 }

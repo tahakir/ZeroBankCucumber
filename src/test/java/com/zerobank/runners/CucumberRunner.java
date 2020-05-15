@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         features ="src/test/resources/features",
         dryRun = false,
         strict = false,
-        tags = "@search_description",
+        tags = "@add_new_payee",
         plugin = {
                 "html:target/default-report",
                 "json:target/cucumber1.json",

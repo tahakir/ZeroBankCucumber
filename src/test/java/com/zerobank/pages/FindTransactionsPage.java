@@ -1,10 +1,12 @@
 package com.zerobank.pages;
 
 import com.zerobank.utilities.BrowserUtilities;
+import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 public class FindTransactionsPage extends BasePage {
 
@@ -60,12 +62,43 @@ public class FindTransactionsPage extends BasePage {
     }
 
     @FindBy(xpath = "//*[@id='filtered_transactions_for_account']/table/tbody/tr[1]/td[2]")
-    private WebElement tableOnline;
+    private WebElement tableDescription;
     public String getTableOnline(){
-        return tableOnline.getText();
+        return tableDescription.getText();
     }
     public void cleanTable(){
         description.clear();
     }
+
+    @FindBy(xpath = "//*[@id='filtered_transactions_for_account']/table")
+    private WebElement tableFull;
+    public String getTableFull(){
+        return tableFull.getText();
+    }
+
+    @FindBy(id = "aa_type")
+    private WebElement type;
+    public void setType(String type1){
+        Select select=new Select(type);
+        select.selectByVisibleText(type1);
+        BrowserUtilities.wait(2);
+        findButton.click();
+        BrowserUtilities.wait(2);
+    }
+
+    @FindBy(xpath = "//*[@id='filtered_transactions_for_account']/table/tbody/tr[1]/td[3] ")
+    private WebElement depositSide;
+    public boolean getDepositSide(){
+        Assert.assertTrue(depositSide.getText(),true);
+        return true;
+    }
+
+    @FindBy(xpath = "//*[@id='filtered_transactions_for_account']/table/tbody/tr[1]/td[4] ")
+    private WebElement withdrawalSide;
+    public boolean getWithdrawalSide(){
+        Assert.assertTrue(depositSide.getText(),true);
+        return true;
+    }
+
 
 }
